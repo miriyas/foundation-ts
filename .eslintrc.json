@@ -20,6 +20,7 @@
   "rules": {
     "arrow-body-style": "off",
     "semi": ["warn", "never"],
+    "react/function-component-definition": ["warn", { "namedComponents": "arrow-function" }],
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-filename-extension": [
       "error",
