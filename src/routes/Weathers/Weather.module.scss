@@ -1,0 +1,110 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/levels';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/position';
+
+.weather {
+  position: relative;
+  width: 360px;
+  height: 720px;
+  padding: 40px;
+  background-color: #fafbfe;
+  border-radius: 60px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: colors.$BIG_TITLE;
+    text-align: center;
+  }
+
+  .forecast {
+    margin-top: 40px;
+
+    h2 {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    ul {
+      margin-top: 24px;
+    }
+
+    li {
+      padding: 24px 14px;
+      background-color: rgba(colors.$BLACK, 10%);
+      border-radius: 20px;
+
+      + li {
+        margin-top: 24px;
+      }
+
+      dl {
+        display: flex;
+
+        > div {
+          flex: 1;
+        }
+      }
+
+      dt,
+      dd {
+        text-align: center;
+      }
+
+      dt {
+        display: none;
+      }
+
+      time {
+        display: block;
+
+        &:first-child {
+          font-weight: 600;
+        }
+
+        &:last-child {
+          margin-top: 4px;
+        }
+      }
+
+      .temp {
+        font-size: 32px;
+
+        sup {
+          font-size: 10px;
+          vertical-align: top;
+        }
+      }
+    }
+  }
+}
+
+// <section className={styles.weather}>
+// <h1>{data.city.name}</h1>
+// <div className={styles.forecast}>
+//   <h2>Next forecast</h2>
+//   <ul>
+//     {data.list.map((item) => {
+//       return (
+//         <li key={item.dt_txt}>
+//           <dl>
+//             <div>
+//               <dt>날짜</dt>
+//               <dd>{item.dt_txt}</dd>
+//             </div>
+//             <div>
+//               <dt>온도</dt>
+//               <dd>{item.main.temp}</dd>
+//             </div>
+//             <div>
+//               <dt>날씨</dt>
+//               <dd>{item.weather[0].main}</dd>
+//             </div>
+//           </dl>
+//         </li>
+//       )
+//     })}
+//   </ul>
+// </div>
+// </section>

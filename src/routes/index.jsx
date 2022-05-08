@@ -1,10 +1,12 @@
 import styles from './Routes.module.scss'
-import TodoList from './TodoList'
+// import TodoList from './TodoList'
+import Weather from './Weathers'
 
-function App() {
+const App = () => {
   return (
     <div className={styles.app}>
-      <TodoList />
+      {/* <TodoList /> */}
+      <Weather />
     </div>
   )
 }
