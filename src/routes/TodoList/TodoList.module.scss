@@ -1,0 +1,114 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/levels';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/position';
+
+.todoList {
+  position: relative;
+  width: 360px;
+  height: 720px;
+  padding: 120px 40px 40px;
+  background-color: #fafbfe;
+  border-radius: 60px;
+
+  h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: colors.$BIG_TITLE;
+  }
+
+  .tasksTitle {
+    margin: 30px 0 24px;
+    font-size: 12px;
+    font-weight: 600;
+    color: colors.$TASKS_TITLE;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .task {
+    display: flex;
+    align-items: center;
+    height: 72px;
+    line-height: 72px;
+    background-color: colors.$WHITE;
+    border-radius: 32px;
+    box-shadow: 0 10px 20px 0 rgba(colors.$BLACK, 2%);
+
+    + .task {
+      margin-top: 18px;
+    }
+
+    .checkboxWrapper {
+      @include flexbox.flexbox(center center);
+      position: relative;
+      width: 28px;
+      height: 28px;
+      margin: 0 24px;
+
+      svg {
+        @include position.middleBox;
+        z-index: levels.$CHECK_ICON;
+        color: colors.$WHITE;
+        pointer-events: none;
+        opacity: 0;
+        transition: 0.2s;
+      }
+    }
+
+    input[type='checkbox'] {
+      @include position.middleBox;
+      z-index: levels.$CHECK_BOX;
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      border: 2px solid colors.$BLUE;
+      border-radius: 50%;
+      transition: 0.2s;
+
+      &:checked {
+        background-color: colors.$BLUE;
+        border: 0;
+
+        ~ svg {
+          opacity: 1;
+        }
+      }
+    }
+
+    .title {
+      overflow: hidden;
+      color: colors.$TASK_ITEM_TITLE;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .addButton {
+    @include position.absolute(auto 40px 40px auto);
+    width: 66px;
+    height: 66px;
+    background-color: colors.$BLUE;
+    border-radius: 50%;
+    box-shadow: 0 10px 20px 0 rgba(colors.$BLACK, 15%);
+    transition: 0.2s;
+
+    &:hover {
+      background-color: rgba(colors.$BLUE, 90%);
+    }
+
+    &::before,
+    &::after {
+      @include position.middleBox;
+      width: 20px;
+      height: 2px;
+      content: '';
+      background-color: colors.$WHITE;
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+      transform-origin: center;
+    }
+  }
+}
