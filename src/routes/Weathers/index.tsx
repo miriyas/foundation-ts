@@ -1,39 +1,39 @@
-// import dayjs from 'dayjs'
+import cx from 'classnames'
 import styles from './Weather.module.scss'
+import { Link, NavLink, useParams } from 'react-router-dom'
 
-import { useMount, useState } from 'hooks'
-import { getWeatherApi } from 'services/weather'
-import { IWeatherAPIRes } from 'types/weather.d'
-import WeatherItem from 'routes/Weathers/Item'
+import WeatherCustom from './Cities/Custom'
+import WeatherChofu from './Cities/Chofu'
+import WeatherKwangmyung from './Cities/Kwangmyung'
 
 const Weather = () => {
-  const [data, setData] = useState<IWeatherAPIRes>()
-
-  useMount(() => {
-    getWeatherApi({
-      appid: '62ddf1108af7c922d3645ed650fe5ee9',
-      lat: 37.494958,
-      lon: 126.844128,
-      units: 'metric',
-    }).then((res) => {
-      setData(res.data)
-    })
-  })
-
-  if (!data) return null
+  const { city } = useParams<{ city: string }>()
 
   return (
-    <section className={styles.weather}>
-      <h1>{data.city.name}</h1>
-      <div className={styles.forecast}>
-        <h2>Next forecast</h2>
+    <main className={styles.weather}>
+      <nav className={styles.lnb}>
         <ul>
-          {data.list.map((item) => (
-            <WeatherItem key={item.dt_txt} item={item} />
-          ))}
+          <li>
+            <Link to='' className={cx({ [styles.isActive]: !city })}>
+              Custom
+            </Link>
+          </li>
+          <li>
+            <NavLink to='kwangmyung' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
+              Kwangmyung
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to='chofu' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
+              Chofu
+            </NavLink>
+          </li>
         </ul>
-      </div>
-    </section>
+      </nav>
+      {!city && <WeatherCustom />}
+      {city === 'chofu' && <WeatherChofu />}
+      {city === 'kwangmyung' && <WeatherKwangmyung />}
+    </main>
   )
 }
 

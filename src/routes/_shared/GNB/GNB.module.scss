@@ -1,0 +1,27 @@
+@use '/src/styles/constants/colors';
+
+.gnb {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+  border-bottom: 1px solid colors.$GRAYE;
+
+  ul {
+    display: flex;
+  }
+
+  li {
+    + li {
+      margin-left: 14px;
+    }
+  }
+
+  a {
+    padding: 4px 14px;
+    color: colors.$GRAY2;
+
+    &.isActive {
+      font-weight: 600;
+    }
+  }
+}

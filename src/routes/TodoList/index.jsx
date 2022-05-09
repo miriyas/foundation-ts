@@ -20,7 +20,7 @@ const INIT_TODO = [
   },
 ]
 
-function TodoList() {
+const TodoList = () => {
   const [todoList, setTodoList] = useState(INIT_TODO)
 
   const handleAddClick = () => {

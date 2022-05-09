@@ -33,7 +33,7 @@ interface IWeather {
   icon: string
 }
 
-interface IListItem {
+export interface IListItem {
   dt: number
   main: IMain
   weather: IWeather[]
