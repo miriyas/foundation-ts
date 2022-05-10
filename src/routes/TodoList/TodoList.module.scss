@@ -39,6 +39,12 @@
       margin-top: 18px;
     }
 
+    &.done {
+      .title::after {
+        right: 0;
+      }
+    }
+
     .checkboxWrapper {
       @include flexbox.flexbox(center center);
       position: relative;
@@ -77,10 +83,18 @@
     }
 
     .title {
+      position: relative;
       overflow: hidden;
       color: colors.$TASK_ITEM_TITLE;
       text-overflow: ellipsis;
       white-space: nowrap;
+
+      &::after {
+        @include position.absolute(50% 100% auto 0);
+        content: '';
+        border-bottom: 2px solid red;
+        transition: 200ms;
+      }
     }
   }
 
