@@ -5,6 +5,7 @@ import { Link, NavLink, useParams } from 'react-router-dom'
 import WeatherCustom from './Cities/Custom'
 import WeatherChofu from './Cities/Chofu'
 import WeatherKwangmyung from './Cities/Kwangmyung'
+import { Suspense } from 'react'
 
 const Weather = () => {
   const { city } = useParams<{ city: string }>()
@@ -30,9 +31,11 @@ const Weather = () => {
           </li>
         </ul>
       </nav>
-      {!city && <WeatherCustom />}
-      {city === 'chofu' && <WeatherChofu />}
-      {city === 'kwangmyung' && <WeatherKwangmyung />}
+      <Suspense fallback={<div>로딩.....................</div>}>
+        {!city && <WeatherCustom />}
+        {city === 'chofu' && <WeatherChofu />}
+        {city === 'kwangmyung' && <WeatherKwangmyung />}
+      </Suspense>
     </main>
   )
 }

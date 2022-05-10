@@ -1,6 +1,8 @@
 @use '/src/styles/constants/colors';
+@use '/src/styles/mixins/position';
 
 .gnb {
+  position: relative;
   display: flex;
   justify-content: center;
   padding: 24px 0;
@@ -23,5 +25,10 @@
     &.isActive {
       font-weight: 600;
     }
+  }
+
+  .language {
+    @include position.absolute(50% 24px auto auto);
+    transform: translateY(-50%);
   }
 }
