@@ -25,7 +25,6 @@ const WeatherCustom = () => {
     getWeatherForecast5DaysApi({
       lat: Number(lat),
       lon: Number(lon),
-      units: 'metric',
     }).then((res) => {
       setData(res.data)
     })

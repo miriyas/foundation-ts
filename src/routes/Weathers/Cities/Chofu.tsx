@@ -12,7 +12,6 @@ const WeatherChofu = () => {
     getWeatherForecast5DaysApi({
       lat: 35.661131270779514,
       lon: 139.58462970568925,
-      units: 'metric',
     }).then((res) => {
       setData(res.data)
     })
