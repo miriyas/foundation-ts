@@ -15,6 +15,7 @@ const App = () => {
           <Route path='weather' element={<Weather />}>
             <Route path=':city' element={<Weather />} />
           </Route>
+          <Route path='*' element={<div>404</div>} />
         </Routes>
       </div>
     </div>
