@@ -6,8 +6,10 @@ import WeatherCustom from './Cities/Custom'
 import WeatherChofu from './Cities/Chofu'
 import WeatherKwangmyung from './Cities/Kwangmyung'
 import { Suspense } from 'react'
+import { useI18n } from 'hooks'
 
 const Weather = () => {
+  const t = useI18n()
   const { city } = useParams<{ city: string }>()
 
   return (
@@ -21,7 +23,7 @@ const Weather = () => {
           </li>
           <li>
             <NavLink to='kwangmyung' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
-              Kwangmyung
+              {`${t('front:city.kwangmyung')}`}
             </NavLink>
           </li>
           <li>
