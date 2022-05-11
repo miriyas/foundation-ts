@@ -1,4 +1,4 @@
-// import cx from 'classnames'
+import cx from 'classnames'
 import dayjs from 'dayjs'
 import styles from './Weather.module.scss'
 

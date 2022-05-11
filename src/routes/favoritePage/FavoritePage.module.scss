@@ -1,0 +1,17 @@
+@import '/src/styles/constants/colors';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  overflow: scroll;
+
+  & article {
+    height: 100%;
+  }
+}
+
+.movieLists {
+  height: 100%;
+}

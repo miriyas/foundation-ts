@@ -1,0 +1,12 @@
+@use '/src/styles/constants/colors';
+
+.container {
+  position: relative;
+  width: 390px;
+  height: 690px;
+  padding: 50px 30px 90px;
+  overflow: hidden;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(0deg, rgba(2, 0, 36, 100%) 18%, rgba(15, 23, 56, 100%) 48%, rgba(11, 53, 96, 100%) 100%);
+  border-radius: 30px;
+}

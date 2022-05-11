@@ -1,0 +1,32 @@
+.itemWrapper {
+  height: 90px;
+  margin: 20px 0 0;
+  overflow: hidden;
+  background-color: rgba(155, 154, 154, 71.9%);
+  border-radius: 10px;
+
+  & button {
+    display: flex;
+    width: 100%;
+  }
+
+  &:hover {
+    background-color: rgb(78, 78, 78);
+  }
+
+  &:active {
+    background-color: rgb(46, 46, 46);
+  }
+}
+
+.poster {
+  min-width: 130px;
+  max-width: 130px;
+  overflow: hidden;
+  object-fit: cover;
+
+  & img {
+    min-width: 130px;
+    max-width: 130px;
+  }
+}
