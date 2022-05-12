@@ -28,7 +28,7 @@
     "property-no-vendor-prefix": [
       true,
       {
-        "ignoreProperties": ["appearance"]
+        "ignoreProperties": ["appearance", "box"]
       }
     ],
     "scale-unlimited/declaration-strict-value": [

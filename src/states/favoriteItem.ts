@@ -4,16 +4,9 @@ import { IMovieItem } from 'types/movie'
 import { atom } from 'hooks/state/index'
 
 // TODO: 아직 사용x isChecked 추가?
-export interface IFavoriteItem {
-  poster: string
-  title: string
-  year: string
-  imdbID: string
-  type: string
-}
 
 const storedFavoriteMovies = store.get('favorite_movies')
-
+console.log('storedFavoriteMovies ', storedFavoriteMovies)
 export const favoritesState = atom<IMovieItem[]>({
   key: 'favoriteMovies',
   default: storedFavoriteMovies ?? [],

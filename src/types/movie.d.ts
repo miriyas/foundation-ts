@@ -4,11 +4,13 @@ interface IMovieItem {
   type: string
   year: string
   imdbID: string
+  isLiked: boolean
 }
 
 interface ICurrentMovie {
-  title: string
+  searchText: string
   page: number
+  totalResults: number
 }
 
 interface IMovieErrorResponse {

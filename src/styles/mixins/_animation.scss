@@ -9,6 +9,28 @@
   }
 
   to {
-    transform: rotate(359deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sonarEffect {
+  0% {
+    opacity: 0.3;
+  }
+
+  40% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 10%), 0 0 3px 3px #888888, 0 0 0 3px rgba(255, 255, 255, 50%);
+    opacity: 0.5;
+  }
+
+  75% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 10%), 0 0 5px 5px #888888, 0 0 0 5px rgba(255, 255, 255, 50%);
+    opacity: 0.9;
+  }
+
+  100% {
+    box-shadow: 0 0 0 2px rgba(156, 156, 156, 9.6%), 0 0 3px 3px #cfcfcf, 0 0 0 3px rgba(255, 255, 255, 50%);
+    opacity: 0;
+    transform: scale(1.2);
   }
 }

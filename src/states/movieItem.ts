@@ -3,11 +3,12 @@ import { IMovieErrorResponse, IMovieItem, ICurrentMovie } from 'types/movie'
 import { atom } from 'hooks/state/index'
 
 // Movie Search Input에서 입력하는 값을 atom으로 관리
-export const currentMovieState = atom<ICurrentMovie>({
+export const currentPageState = atom<ICurrentMovie>({
   key: 'currentMovieState',
   default: {
-    title: '',
+    searchText: '',
     page: 1,
+    totalResults: 0,
   },
 })
 

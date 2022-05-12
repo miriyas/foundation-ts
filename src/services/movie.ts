@@ -1,7 +1,9 @@
 import axios from 'axios'
-import { IMovieAPIRes } from 'types/movie.d'
+import store from 'store'
+import { IMovieAPIRes, IMovieItem } from 'types/movie.d'
 
 const MOVIE_BASE_URL = 'http://www.omdbapi.com'
+const isLikedList = store.get('favorite_movies')
 
 interface Params {
   searchText: string
@@ -43,24 +45,33 @@ axiosInstance.interceptors.response.use(
     }
 
     res.data.movieList = res.data.Search.map((value: ISearchResponse) => {
+      let isLiked = false
+      if (isLikedList?.length > 0)
+        isLiked = isLikedList.some(
+          (favorite: IMovieItem) => favorite.title === value.Title && favorite.imdbID === value.imdbID
+        )
+      console.log('islike: ', isLiked)
       return {
         poster: value.Poster,
         title: value.Title,
         type: value.Type,
         year: value.Year,
         imdbID: value.imdbID,
+        isLiked,
       }
     })
     return Promise.resolve(res)
   },
   (error) => {
     error.data = error.data || {}
+    error.data.error = error.data.error || {}
     error.data.error = {
       isError: error?.response.data.response !== 'False',
       error: error?.response.data.Error,
       code: error.code,
       message: error.message,
     }
+    console.log('error: ', error)
     return Promise.reject(error)
   }
 )
