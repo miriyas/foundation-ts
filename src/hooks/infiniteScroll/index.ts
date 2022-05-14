@@ -1,6 +1,3 @@
-import { useMount, useUnmount } from 'hooks'
-import { IMovieItem } from 'types/movie'
-import { getMoreMoviesList } from 'services/movie'
 import { useEffect, useState } from 'react'
 
 interface useIntersectionObserverProps {

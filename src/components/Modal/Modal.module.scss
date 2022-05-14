@@ -1,4 +1,5 @@
-@use '/src/styles/constants/colors';
+@use 'styles/constants/colors';
+@use 'styles/mixins/animation';
 
 .backDropButton {
   position: absolute;
@@ -12,38 +13,66 @@
   z-index: 10;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 75%);
+  background: colors.$MODAL_BACKDROP_BACKGROUND;
 }
 
 .modal {
   position: fixed;
-  top: 30vh;
+  top: 30%;
   left: 50%;
   z-index: 100;
   width: 300px;
-  height: 200px;
+  height: fit-content;
+  padding: 10px;
   overflow: hidden;
   color: colors.$MODAL_TEXT;
   background-color: colors.$MODAL_BACKGROUND;
   border-radius: 5px;
-  box-shadow: 0 0 10px 0 #ffffff;
+  box-shadow: 0 0 10px 0 colors.$WHITE;
   transform: translateX(-50%);
 }
 
+.modalActive {
+  z-index: 100;
+  animation: blowUpModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+
+  + .content + .title + .footer {
+    z-index: 1;
+    animation: blowUpContent 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  }
+}
+
 .header {
+  display: flex;
   padding: 1rem;
   background: colors.$MODAL_HEADER;
-  border-bottom: 1px solid colors.$GRAYA;
 
-  h2 {
-    margin: 0;
-    font-weight: 500;
-    color: colors.$HEADER_TEXT;
+  & img {
+    width: 80px;
+    max-width: 80px;
+    max-height: 210px;
+    margin-right: 10px;
+  }
+
+  & .title {
+    max-height: 48px;
+    font-weight: 600;
+  }
+
+  & dd {
+    line-height: 1.7em;
+    color: colors.$GRAYA;
   }
 }
 
 .content {
   padding: 1em;
+  border-top: 1px solid colors.$GRAY6;
+  border-bottom: 1px solid colors.$GRAY6;
+
+  & dd {
+    margin-top: 10px;
+  }
 }
 
 .footer {
@@ -52,11 +81,36 @@
 
   & button {
     width: 100%;
-    padding: 7px;
+    padding: 5px;
     margin: 15px;
-    color: colors.$WHITE;
+    font-size: 15px;
+    font-weight: 600;
+    color: colors.$MODAL_BUTTON_TEXT;
     background-color: colors.$MODAL_BUTTON_BACKGROUND;
-    border: 1px solid colors.$BUTTON_BORDER;
+    border: 1px solid colors.$MODAL_BUTTON_BORDER;
     border-radius: 10px;
+
+    &:hover {
+      color: colors.$MODAL_BUTTON_HOVER_TEXT;
+      background-color: colors.$MODAL_BUTTON_HOVER_BACKGROUND;
+    }
+
+    &:active {
+      background-color: colors.$MODAL_BUTTON_ACTIVE_BACKGROUND;
+    }
   }
+}
+
+.poster {
+  text-align: center;
+
+  & img {
+    max-height: 250px;
+    object-fit: contain;
+  }
+}
+
+strong {
+  font-size: 17px;
+  font-weight: 600;
 }

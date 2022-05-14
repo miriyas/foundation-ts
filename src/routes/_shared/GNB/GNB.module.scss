@@ -1,34 +1,65 @@
 @use '/src/styles/constants/colors';
-@use '/src/styles/mixins/position';
 
-.gnb {
-  position: relative;
+.wrapper {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
   display: flex;
-  justify-content: center;
-  padding: 24px 0;
-  border-bottom: 1px solid colors.$GRAYE;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+  height: 47px;
+  padding: 2px 7px;
+  background-color: #201f32;
+  border-radius: 28px;
+  transform: translateX(-50%);
 
-  ul {
+  & ul {
     display: flex;
+    width: 100%;
   }
 
-  li {
-    + li {
-      margin-left: 14px;
+  & li {
+    display: flex;
+    width: 100%;
+    padding: 0 13px;
+
+    & a {
+      display: block;
+      padding: 3px;
     }
   }
+}
 
-  a {
-    padding: 4px 14px;
-    color: colors.$GRAY2;
+.menu {
+  width: 100%;
+  height: 100%;
+  color: rgb(255, 255, 255);
 
-    &.isActive {
-      font-weight: 600;
-    }
+  svg {
+    height: 100%;
+    color: rgb(138, 138, 138);
+  }
+  text-align: center;
+  text-decoration: none;
+
+  &:visited {
+    color: rgb(25, 24, 83);
   }
 
-  .language {
-    @include position.absolute(50% 24px auto auto);
-    transform: translateY(-50%);
+  &:hover {
+    background-color: rgb(102, 102, 102);
+    border-radius: 20px;
+  }
+
+  &:active {
+    background-color: rgb(82, 82, 82);
+  }
+}
+
+.active {
+  svg {
+    color: rgb(255, 255, 255);
   }
 }

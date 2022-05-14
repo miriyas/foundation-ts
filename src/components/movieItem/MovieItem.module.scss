@@ -27,13 +27,13 @@
     background-color: rgb(46, 46, 46);
   }
 
-  &.moveUp {
-    transform: translate(0, -41px);
+  &.dragVisible {
+    background-color: rgb(173, 184, 73);
   }
+}
 
-  &.moveDown {
-    transform: translate(0, 41px);
-  }
+.isDraggable {
+  background-color: rgba(78, 78, 47, 71.9%);
 }
 
 .grabbing {
@@ -59,7 +59,9 @@
   padding: 10px;
   // overflow: hidden;
 
-  & div {
+  & dl,
+  dd,
+  dt {
     margin: 7px;
     text-align: left;
   }
@@ -94,7 +96,7 @@
   right: 0;
   height: fit-content;
   padding: 7px;
-  color: rgb(253, 253, 48);
+  color: rgb(255, 255, 0);
   transition: transform ease-out 0.1s;
 
   &::after {
@@ -107,7 +109,7 @@
   }
 
   &:hover {
-    color: rgb(189, 189, 40);
+    color: rgb(228, 228, 42);
     transform: scale(1.2);
 
     & svg {

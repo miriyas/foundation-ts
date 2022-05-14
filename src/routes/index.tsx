@@ -3,35 +3,22 @@ import { Routes, Route } from 'react-router-dom'
 
 import MainPage from './MainPage'
 import FavoritePage from './FavoritePage'
-
-import Container from 'components/container/Container'
+import Container from 'components/container'
 import Header from 'components/Header'
-import Footer from 'components/Footer'
-import { Suspense } from 'react'
-import Loading from 'components/Loading'
+import GNB from './_shared/GNB'
 
 // TODO: 추후 라우팅, outlet
 const App = () => {
   return (
     <div className={styles.app}>
       <Container>
-        <Suspense fallback={<Loading />}>
-          <Header />
-          <Routes>
-            <Route path='/' element={<MainPage />} />
-            <Route path='favorites' element={<FavoritePage />} />
-          </Routes>
-          <Footer />
-        </Suspense>
-        <div className={styles.night}>
-          <div className={styles.shootingStar} />
-          <div className={styles.shootingStar} />
-          <div className={styles.shootingStar} />
-          <div className={styles.shootingStar} />
-
-          <div className={styles.shootingStar} />
-          <div className={styles.shootingStar} />
-        </div>
+        <Header />
+        <Routes>
+          <Route path='/' element={<MainPage />} />
+          <Route path='favorites' element={<FavoritePage />} />
+          <Route path='*' element={<div className={styles.notFound}>404: Page Not found.</div>} />
+        </Routes>
+        <GNB />
       </Container>
     </div>
   )

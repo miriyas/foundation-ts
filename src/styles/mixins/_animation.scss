@@ -34,3 +34,67 @@
     transform: scale(1.2);
   }
 }
+
+@keyframes blowUpContent {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  99.9% {
+    opacity: 0;
+    transform: scale(2);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes blowUpModal {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes tail {
+  0% {
+    width: 0;
+  }
+
+  30% {
+    width: 90px;
+  }
+
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes shining {
+  0% {
+    width: 0;
+  }
+
+  50% {
+    width: 20px;
+  }
+
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes shooting {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(300px);
+  }
+}

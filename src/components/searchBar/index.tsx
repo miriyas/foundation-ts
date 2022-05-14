@@ -1,4 +1,4 @@
-import { useRef, useState, ChangeEvent, FormEvent, RefObject } from 'react'
+import { useRef, useState, ChangeEvent, FormEvent } from 'react'
 import { useClickOutsideListenerRef } from 'hooks/outsideClick'
 import { useRecoil } from 'hooks/state'
 import { FaSearch } from 'react-icons/fa'
@@ -16,9 +16,9 @@ const SearchBar = ({ hadleMainScrollTop }: ISearchBarProps) => {
   const { pathname } = useLocation()
   const [searchText, setSearchText] = useState('')
   // TODO: set만 쓰게 바꾸기
-  const [currentMovie, setCurrentPage, resetCurrentPage] = useRecoil(currentPageState)
-  const [movies, setMovies, resetMovies] = useRecoil(moviesState)
-  const [error, setError, resetError] = useRecoil(errorMovieState)
+  const [, setCurrentPage, resetCurrentPage] = useRecoil(currentPageState)
+  const [, setMovies, resetMovies] = useRecoil(moviesState)
+  const [, setError, resetError] = useRecoil(errorMovieState)
   const navigate = useNavigate()
   const [toggleSearchBar, setToggleSearchBar] = useState(false)
   const focusRef = useRef<HTMLInputElement>(null)
