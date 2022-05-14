@@ -1,6 +1,7 @@
 import { MouseEventHandler } from 'react'
-import styles from './FavoriteModal.module.scss'
+import styles from './Modal.module.scss'
 import ReactDOM from 'react-dom'
+import { IMovieItem } from 'types/movie'
 
 interface IBackDropProps {
   onCancel: MouseEventHandler<HTMLButtonElement>
@@ -9,6 +10,7 @@ interface IBackDropProps {
 interface IModalProps {
   onClick: MouseEventHandler<HTMLButtonElement>
   content: string
+  movie: IMovieItem
   onCancel: MouseEventHandler<HTMLButtonElement>
 }
 
@@ -20,7 +22,7 @@ const BackDrop = ({ onCancel }: IBackDropProps) => {
   )
 }
 
-const FavoriteModalOverlay = ({ onClick, content, onCancel }: IModalProps) => {
+const ModalOverlay = ({ onClick, content, movie, onCancel }: IModalProps) => {
   return (
     <div className={styles.modal}>
       <header className={styles.header}>
@@ -41,7 +43,7 @@ const FavoriteModalOverlay = ({ onClick, content, onCancel }: IModalProps) => {
   )
 }
 
-const FavoriteModal = ({ onClick, content, onCancel }: IModalProps) => {
+const Modal = ({ onClick, content, movie, onCancel }: IModalProps) => {
   const backDropElement = document?.getElementById('backdrop-root')
   const modalElement = document?.getElementById('favorite-modal')
 
@@ -51,11 +53,11 @@ const FavoriteModal = ({ onClick, content, onCancel }: IModalProps) => {
 
       {modalElement &&
         ReactDOM.createPortal(
-          <FavoriteModalOverlay onClick={onClick} content={content} onCancel={onCancel} />,
+          <ModalOverlay onClick={onClick} movie={movie} content={content} onCancel={onCancel} />,
           modalElement
         )}
     </>
   )
 }
 
-export default FavoriteModal
+export default Modal

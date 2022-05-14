@@ -1,14 +1,4 @@
-import {
-  useRef,
-  useState,
-  SetStateAction,
-  Dispatch,
-  ChangeEvent,
-  MouseEvent,
-  FormEvent,
-  MutableRefObject,
-  RefObject,
-} from 'react'
+import { useRef, useState, ChangeEvent, FormEvent, RefObject } from 'react'
 import { useClickOutsideListenerRef } from 'hooks/outsideClick'
 import { useRecoil } from 'hooks/state'
 import { FaSearch } from 'react-icons/fa'
@@ -17,13 +7,12 @@ import { currentPageState, errorMovieState, moviesState } from 'states/movieItem
 import { cx } from 'styles'
 import styles from './SearchBar.module.scss'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { IMovieItem } from 'types/movie'
 
 interface ISearchBarProps {
-  scrollRef?: RefObject<HTMLElement>
+  hadleMainScrollTop?: () => void
 }
 
-const SearchBar = ({ scrollRef }: ISearchBarProps): JSX.Element => {
+const SearchBar = ({ hadleMainScrollTop }: ISearchBarProps) => {
   const { pathname } = useLocation()
   const [searchText, setSearchText] = useState('')
   // TODO: set만 쓰게 바꾸기
@@ -54,7 +43,7 @@ const SearchBar = ({ scrollRef }: ISearchBarProps): JSX.Element => {
   // React. => 위에서 한번에 갖고 오기, FormEvent
   const handleSubmitSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    scrollRef?.current?.scrollTo(0, 0)
+    if (hadleMainScrollTop) hadleMainScrollTop()
     const target = e.currentTarget as typeof e.currentTarget & {
       searchInputText: { value: string }
     }
@@ -65,18 +54,14 @@ const SearchBar = ({ scrollRef }: ISearchBarProps): JSX.Element => {
       return
     }
     setTimeout(() => {
-      // async - await?
       getMoviesList({ searchText: text, pageNumber: 1 })
         .then((res) => {
-          console.log(res)
           const totalResults = parseInt(res.data.totalResults, 10)
           resetError()
           setMovies(res.data.movieList)
           setCurrentPage({ searchText: text, page: 1, totalResults })
         })
         .catch((err) => {
-          console.log('err: ', err)
-          // Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'error')
           setError(err.data.error)
           resetMovies()
           resetCurrentPage()

@@ -26,6 +26,18 @@
   &:active {
     background-color: rgb(46, 46, 46);
   }
+
+  &.moveUp {
+    transform: translate(0, -41px);
+  }
+
+  &.moveDown {
+    transform: translate(0, 41px);
+  }
+}
+
+.grabbing {
+  cursor: grabbing;
 }
 
 .poster {

@@ -1,24 +1,23 @@
 import { lazy, Suspense, useRef, useState } from 'react'
 import store from 'store'
-import { ImSpinner2 } from 'react-icons/im'
 
+import { IMovieAPIRes, IMovieItem } from 'types/movie'
+import { useRecoilValue, useRecoil } from 'hooks/state/'
+import useIntersectionObserver from 'hooks/infiniteScroll'
+import { currentPageState, errorMovieState, moviesState } from 'states/movieItem'
+import { favoritesState } from 'states/favoriteItem'
+import { getMoreMoviesList } from 'services/movie'
+
+import { Modal, Loading, SearchBar, MovieItem } from 'components'
 import { cx } from 'styles'
 import styles from './MainPage.module.scss'
-import { useRecoilValue, useRecoil } from 'hooks/state/'
-import { IMovieItem } from 'types/movie'
-import { currentPageState, errorMovieState, moviesState } from 'states/movieItem'
-import FavoriteModal from 'components/favoriteModal/FavoriteModal'
-import { favoritesState } from 'states/favoriteItem'
-import useIntersectionObserver from 'hooks/infiniteScroll'
-import { getMoreMoviesList } from 'services/movie'
-import MovieItem from 'components/movieItem/MovieItem'
-import SearchBar from 'components/searchBar'
 
-const LazyMovieListItem = lazy(() => import('components/movieItem/MovieItem'))
+const LazyMovieItem = lazy(() => import('components/MovieItem'))
 
 const MainPage = () => {
   const [movies, setMovies, resetMovies] = useRecoil(moviesState)
   const [favoriteMovies, setFavoriteMovies] = useRecoil(favoritesState)
+  const [rootTarget, setRootTarget] = useState<HTMLElement | null | undefined>(null)
   const [currentPage, setCurrentPage, resetCurrentPage] = useRecoil(currentPageState)
   const [searchError, setSearchError, resetSearchError] = useRecoil(errorMovieState)
 
@@ -26,7 +25,7 @@ const MainPage = () => {
   const [modalVisible, setModalVisible] = useState(false)
   const [isFetching, setIsFetching] = useState(false)
 
-  const mainRef = useRef<HTMLElement>(null)
+  const mainRef = useRef<HTMLUListElement>(null)
 
   // TODO: hook으로 빼기
   // TODO: 분기 이미 좋아하는지..
@@ -80,95 +79,87 @@ const MainPage = () => {
     if (entries.isIntersecting) {
       setIsFetching(true)
       const { searchText, page, totalResults } = currentPage
-      if (totalResults <= page * 10) {
+
+      if (totalResults <= movies.length) {
         setIsFetching(false)
         return
       }
+
       const pageNumber = page + 1
-      setTimeout(() => {
-        getMoreMoviesList({ searchText, pageNumber })
-          .then((res) => {
-            setMovies((prev) => [...prev, ...res.data.movieList])
-            setCurrentPage((prev) => ({ ...prev, page: pageNumber }))
+
+      getMoreMoviesList({ searchText, pageNumber })
+        .then((res) => {
+          setMovies((prev) => [...prev, ...res.data.movieList])
+          setCurrentPage((prev) => {
+            return { ...prev, page: pageNumber }
           })
-          .catch((err) => {
-            resetMovies()
-            resetCurrentPage()
-            setSearchError(err.data.error)
-          })
-          .finally(() => {
-            setTimeout(() => {
-              setIsFetching(false)
-            }, 200)
-          })
-      }, 5000)
+        })
+        .catch((err) => {
+          resetMovies()
+          resetCurrentPage()
+          setSearchError(err.data.error)
+        })
+        .finally(() => {
+          setTimeout(() => {
+            setIsFetching(false)
+          }, 200)
+        })
     }
   }
 
   const { setTarget } = useIntersectionObserver({
-    rootMargin: '0px',
-    threshold: 1,
+    root: rootTarget,
+    rootMargin: '10px',
+    threshold: 0,
     onIntersect,
   })
 
-  // TODO: 검색바 분리해서 AXIOS CALL 함수 넘겨서 로딩화면 만들기
+  const hadleMainScrollTop = () => {
+    if (mainRef?.current) {
+      mainRef.current.scrollTo(0, 0)
+    }
+  }
+
   // TODO: suspense 제대로 쓰기
-  // TODO: movie list에 별표 하기
   return (
     <>
-      <SearchBar scrollRef={mainRef} />
-      <main ref={mainRef} className={styles.wrapper}>
-        {modalVisible && (
-          <FavoriteModal
-            onClick={handleModalOnClick}
-            onCancel={handleCloseModal}
-            content={selectedMovie?.isLiked ? '제거' : '추가'}
-          />
-        )}
-
+      <SearchBar hadleMainScrollTop={hadleMainScrollTop} />
+      <main className={styles.wrapper} ref={setRootTarget}>
         {searchError.isError && (
           <div className={styles.infoText}>
-            <p>Error: {searchError.error}</p>{' '}
+            <p>Error: {searchError.error}</p>
           </div>
         )}
         {!searchError.isError && movies?.length === 0 && (
           <div className={styles.infoText}>
-            <p>검색 결과가 없습니다.</p>{' '}
+            <p>검색 결과가 없습니다.</p>
           </div>
         )}
-        {/* {isFetching && <ImSpinner2 className={styles.spinner} size='5em' color='orange' rotate={1} />} */}
+        {isFetching && <Loading />}
 
         {movies.length > 0 && (
-          <ul className={cx({ [styles.movieLists]: movies.length > 0 })}>
-            {movies.map((value, index) => (
-              <Suspense
-                key={`${value.imdbID}-${index + 1}`}
-                fallback={
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      width: '500px',
-                      height: '500px',
-                      backgroundColor: 'yellow',
-                      transform: 'translate(-50%, -50%)',
-                      zIndex: 9999,
-                    }}
-                  >
-                    loading...
-                  </div>
-                }
-              >
-                <LazyMovieListItem
+          <ul className={cx({ [styles.movieLists]: movies.length > 0 })} ref={mainRef}>
+            {/* {movies.map((value, index) => {
+              return (
+                <LazyMovieItem
+                  index={index}
                   key={`${value.imdbID}-${index + 1}`}
                   movie={value}
+                  draggable={false}
                   onClick={() => handleOpenModal(value)}
                 />
-              </Suspense>
-            ))}
-            <li ref={setTarget} />
+              )
+            })} */}
+            {!isFetching && <li ref={setTarget} className={styles.scrollTargetLi} />}
           </ul>
+        )}
+        {modalVisible && selectedMovie && (
+          <Modal
+            onClick={handleModalOnClick}
+            onCancel={handleCloseModal}
+            content={selectedMovie?.isLiked ? '제거' : '추가'}
+            movie={selectedMovie}
+          />
         )}
       </main>
     </>

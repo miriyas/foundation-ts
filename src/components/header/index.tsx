@@ -23,12 +23,12 @@ const Header = () => {
       <h3 className={cx(styles.title)}>
         <strong>{pathname === '/' ? 'Movies' : 'Favorites'}</strong>
       </h3>
-
+      {/*
       <div className={cx(styles.darkMode)}>
         <button type='button' onClick={handleClickDarkMode}>
           {toggleDarkMode ? <BsFillMoonFill size='1.1em' color='yellow' /> : <IoMdSunny size='1.5em' color='white' />}
         </button>
-      </div>
+      </div> */}
     </header>
   )
 }

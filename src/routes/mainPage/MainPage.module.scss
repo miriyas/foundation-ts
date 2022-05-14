@@ -2,6 +2,7 @@
 @use 'styles/mixins/_animation';
 
 .wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,14 +22,12 @@
 }
 
 .movieLists {
+  position: absolute;
   width: 100%;
   height: 100%;
+  overflow: scroll;
 }
 
-.spinner {
-  position: absolute;
-  top: 40%;
-  z-index: 1;
-  transform: translateY(-50%);
-  animation: rotation 0.5s linear infinite;
+.scrollTargetLi {
+  padding-top: 1px;
 }

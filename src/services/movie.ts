@@ -50,7 +50,7 @@ axiosInstance.interceptors.response.use(
         isLiked = isLikedList.some(
           (favorite: IMovieItem) => favorite.title === value.Title && favorite.imdbID === value.imdbID
         )
-      console.log('islike: ', isLiked)
+
       return {
         poster: value.Poster,
         title: value.Title,
@@ -84,7 +84,7 @@ const getMoviesList = (params: Params) =>
   })
 
 const getMoreMoviesList = (params: Params) =>
-  axiosInstance.get<IMovieAPIRes>(`/`, {
+  axiosInstance.get(`/`, {
     params: {
       ...params,
     },

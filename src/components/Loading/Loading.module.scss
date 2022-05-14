@@ -1,0 +1,15 @@
+@use 'styles/mixins/_animation';
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  font-size: 5em;
+  color: rgb(248, 166, 15);
+  transform: translate(-50%, -50%);
+
+  & svg {
+    animation: rotation 0.5s linear infinite;
+  }
+}

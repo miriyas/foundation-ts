@@ -21,7 +21,9 @@ interface IMovieErrorResponse {
 }
 
 interface IMovieAPIRes {
-  movieList: IMovieItem[]
+  data: {
+    movieList: IMovieItem[]
+  }
   error: IMovieErrorResponse
 }
 
