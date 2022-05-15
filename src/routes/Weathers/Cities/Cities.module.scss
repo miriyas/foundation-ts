@@ -1,6 +1,7 @@
 @use '/src/styles/constants/colors';
 @use '/src/styles/constants/levels';
 @use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/responsive';
 @use '/src/styles/mixins/position';
 
 .city {
@@ -113,5 +114,32 @@
         }
       }
     }
+  }
+
+  @include responsive.after(SD) {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    li {
+      width: 240px;
+      height: 120px;
+      margin: 8px;
+
+      + li {
+        margin: 8px !important;
+      }
+    }
+  }
+
+  @include responsive.after(MD) {
+    width: 100%;
+    background: burlywood;
+  }
+
+  @include responsive.after(LD) {
+    width: 100%;
+    background: cadetblue;
   }
 }

@@ -1,6 +1,7 @@
 @use '/src/styles/constants/colors';
 @use '/src/styles/constants/levels';
 @use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/responsive';
 @use '/src/styles/mixins/position';
 
 .weather {
@@ -11,6 +12,12 @@
   color: colors.$WHITE;
   background: linear-gradient(28deg, rgba(#0b0b41, 100%) 0%, rgba(#06709f, 100%) 100%);
   border-radius: 60px;
+
+  @include responsive.after(ML) {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
 
   .lnb {
     display: flex;
