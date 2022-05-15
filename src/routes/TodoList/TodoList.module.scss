@@ -10,11 +10,29 @@
   padding: 120px 40px 40px;
   background-color: #fafbfe;
   border-radius: 60px;
+  transition: 300ms background-color;
+
+  :root[color-theme='dark'] & {
+    background-color: #222222;
+
+    h1 {
+      color: colors.$WHITE;
+    }
+
+    .task {
+      background-color: colors.$GRAY3;
+
+      .title {
+        color: colors.$WHITE;
+      }
+    }
+  }
 
   h1 {
     font-size: 32px;
     font-weight: 600;
     color: colors.$BIG_TITLE;
+    transition: 300ms color;
   }
 
   .tasksTitle {

@@ -1,12 +1,11 @@
-// import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil'
-
 import styles from './TodoList.module.scss'
+
+import { useAppSelector } from 'hooks'
 import TodoItem from './Item'
-import { useRecoil } from 'hooks/state'
-import { todoListState } from 'states/todo'
+import { getTodoList } from 'states/todo'
 
 const TodoList = () => {
-  const [todoList] = useRecoil(todoListState)
+  const todoList = useAppSelector(getTodoList)
 
   // const todoList111 = useRecoilValue(todoListState)
   // const setTodoList111 = useSetRecoilState(todoListState)

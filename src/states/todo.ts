@@ -1,4 +1,7 @@
-import { atom } from 'hooks/state'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+import type { RootState } from '.'
+
 import { ITodoItem } from 'types/todo.d'
 
 const INIT_TODO = [
@@ -19,7 +22,28 @@ const INIT_TODO = [
   },
 ]
 
-export const todoListState = atom<ITodoItem[]>({
-  key: '#todoListState',
-  default: INIT_TODO,
+export interface TodoState {
+  todoList: ITodoItem[]
+}
+
+const INITIAL_STATE: TodoState = {
+  todoList: INIT_TODO,
+}
+
+const systemSlice = createSlice({
+  name: 'system',
+  initialState: INITIAL_STATE,
+  reducers: {
+    setTodoList: (state: TodoState, action: PayloadAction<ITodoItem[]>) => {
+      state.todoList = action.payload
+    },
+  },
 })
+
+export const { setTodoList } = systemSlice.actions
+
+export default systemSlice.reducer
+
+// Selector =====================
+
+export const getTodoList = (state: RootState): ITodoItem[] => state.todo.todoList

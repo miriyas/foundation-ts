@@ -27,8 +27,12 @@
     }
   }
 
-  .language {
+  .rightWing {
     @include position.absolute(50% 24px auto auto);
     transform: translateY(-50%);
+
+    button {
+      margin-left: 14px;
+    }
   }
 }
