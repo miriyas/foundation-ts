@@ -1,0 +1,9 @@
+@mixin lineClamp($line, $lineHeight) {
+  /* stylelint-disable-next-line value-no-vendor-prefix */
+  display: -webkit-box;
+  height: #{$lineHeight * $line}px;
+  overflow: hidden;
+  word-break: break-all;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}
