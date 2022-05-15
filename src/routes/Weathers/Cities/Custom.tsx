@@ -1,15 +1,14 @@
-import { ChangeEvent, FormEvent } from 'react'
+import { ChangeEvent } from 'react'
+import { useQuery } from 'react-query'
 import { useSearchParams } from 'react-router-dom'
 import styles from './Cities.module.scss'
 
 import { useMount, useState } from 'hooks'
 import { getWeatherForecast5DaysApi } from 'services/weather'
-import { IWeatherAPIRes } from 'types/weather.d'
 import WeatherItem from 'routes/Weathers/Item'
 
 const WeatherCustom = () => {
   const [searchParams] = useSearchParams()
-  const [data, setData] = useState<IWeatherAPIRes>()
   const [lat, setLat] = useState(searchParams.get('lat') ?? '')
   const [lon, setLon] = useState(searchParams.get('lon') ?? '')
 
@@ -18,16 +17,17 @@ const WeatherCustom = () => {
     handleSubmit()
   })
 
-  const handleSubmit = (e?: FormEvent<HTMLFormElement>) => {
-    e?.preventDefault()
+  const { data, refetch } = useQuery(
+    ['getWeatherForecast5DaysApi', lat, lon],
+    () => getWeatherForecast5DaysApi({ lat: Number(lat), lon: Number(lon) }).then((res) => res.data),
+    {
+      refetchOnWindowFocus: false,
+      useErrorBoundary: true,
+    }
+  )
 
-    if (!lat || !lon) return
-    getWeatherForecast5DaysApi({
-      lat: Number(lat),
-      lon: Number(lon),
-    }).then((res) => {
-      setData(res.data)
-    })
+  const handleSubmit = () => {
+    refetch()
   }
 
   const handleLatChange = (e: ChangeEvent<HTMLInputElement>) => {

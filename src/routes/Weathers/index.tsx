@@ -1,7 +1,10 @@
+/* eslint-disable react/no-unstable-nested-components */
 import cx from 'classnames'
-import styles from './Weather.module.scss'
 import { Link, NavLink, useParams } from 'react-router-dom'
+import { ErrorBoundary } from 'react-error-boundary'
+import styles from './Weather.module.scss'
 
+import Error from './Cities/Error'
 import WeatherCustom from './Cities/Custom'
 import WeatherChofu from './Cities/Chofu'
 import WeatherKwangmyung from './Cities/Kwangmyung'
@@ -34,9 +37,11 @@ const Weather = () => {
         </ul>
       </nav>
       <Suspense fallback={<div>로딩.....................</div>}>
-        {!city && <WeatherCustom />}
-        {city === 'chofu' && <WeatherChofu />}
-        {city === 'kwangmyung' && <WeatherKwangmyung />}
+        <ErrorBoundary fallbackRender={({ error }) => <Error error={error} />}>
+          {!city && <WeatherCustom />}
+          {city === 'chofu' && <WeatherChofu />}
+          {city === 'kwangmyung' && <WeatherKwangmyung />}
+        </ErrorBoundary>
       </Suspense>
     </main>
   )
