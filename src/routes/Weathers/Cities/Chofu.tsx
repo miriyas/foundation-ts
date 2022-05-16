@@ -18,7 +18,10 @@ const WeatherChofu = () => {
       suspense: true,
       useErrorBoundary: true,
       onError(err) {
-        if (isAxiosError(err)) console.log(err)
+        if (isAxiosError(err)) {
+          // eslint-disable-next-line no-console
+          console.log(err)
+        }
       },
     }
   )

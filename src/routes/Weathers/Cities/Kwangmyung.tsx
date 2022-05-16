@@ -16,7 +16,10 @@ const WeatherKwangmyung = () => {
       refetchOnWindowFocus: false,
       refetchInterval: 3000,
       onError(err) {
-        if (isAxiosError(err)) console.log(err)
+        if (isAxiosError(err)) {
+          // eslint-disable-next-line no-console
+          console.log(err)
+        }
       },
     }
   )
