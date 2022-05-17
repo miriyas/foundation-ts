@@ -23,6 +23,7 @@ const WeatherCustom = () => {
     {
       refetchOnWindowFocus: false,
       useErrorBoundary: true,
+      staleTime: 6 * 10 * 1000,
     }
   )
 
