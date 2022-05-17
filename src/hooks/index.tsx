@@ -5,6 +5,7 @@ export { useClickAway, useInterval, usePrevious, useMount, useUnmount } from 're
 export { useState, useEffect, useLayoutEffect, useCallback, useContext, useMemo, useReducer, useRef } from 'react'
 
 export { useI18n } from './useI18n'
+export { useKeys } from './useKeys'
 export { useTimeoutFn } from './useTimeoutFn'
 export { useAppDispatch } from './useAppDispatch'
 export { useAppSelector } from './useAppSelector'
