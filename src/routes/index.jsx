@@ -2,7 +2,7 @@ import { useMount } from 'react-use'
 import { Routes, Route } from 'react-router-dom'
 import styles from './Routes.module.scss'
 
-import { useAppSelector } from 'hooks'
+import { useAppSelector, useGA } from 'hooks'
 import { getTheme } from 'states/system'
 
 import TodoList from './TodoList'
@@ -11,8 +11,10 @@ import GNB from 'routes/_shared/GNB'
 
 const App = () => {
   const theme = useAppSelector(getTheme)
+  const { initializeGA } = useGA()
 
   useMount(() => {
+    initializeGA()
     document.documentElement.setAttribute('color-theme', theme)
   })
 
