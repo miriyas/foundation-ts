@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react'
 import cx from 'classnames'
 import styles from './TodoList.module.scss'
 
-import { useAppDispatch, useAppSelector } from 'hooks'
+import { useAppDispatch, useAppSelector, useGA } from 'hooks'
 import { getTodoList, setTodoList } from 'states/todo'
 import { ITodoItem } from 'types/todo.d'
 
@@ -13,6 +13,7 @@ interface Props {
 }
 
 const TodoItem = ({ todo }: Props) => {
+  const { gaEvent } = useGA()
   const dispatch = useAppDispatch()
   const todoList = useAppSelector(getTodoList)
   const { done, id, title } = todo
@@ -21,6 +22,7 @@ const TodoItem = ({ todo }: Props) => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.currentTarget
+    gaEvent({ action: 'todo', data: { checked: checked ? 'check' : 'uncheck' } })
     dispatch(setTodoList(todoList.map((item) => (item.id === Number(id) ? { ...item, done: checked } : item))))
   }
 
