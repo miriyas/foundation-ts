@@ -1,4 +1,4 @@
-import styles from './TodoList.module.scss'
+import styles from './todoList.module.scss'
 
 import { useAppSelector } from 'hooks'
 import TodoItem from './Item'

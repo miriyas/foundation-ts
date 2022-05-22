@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 import cx from 'classnames'
-import styles from './TodoList.module.scss'
+import styles from './todoList.module.scss'
 
 import { useAppDispatch, useAppSelector, useGA } from 'hooks'
 import { getTodoList, setTodoList } from 'states/todo'

@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react'
 import { useQuery } from 'react-query'
 import { useSearchParams } from 'react-router-dom'
-import styles from './Cities.module.scss'
+import styles from './cities.module.scss'
 
 import { useMount, useState } from 'hooks'
 import { getWeatherForecast5DaysApi } from 'services/weather'

@@ -1,6 +1,6 @@
 // import cx from 'classnames'
 import dayjs from 'dayjs'
-import styles from './Weather.module.scss'
+import styles from './weather.module.scss'
 
 import { IListItem } from 'types/weather.d'
 import { getWeatherIcon } from 'utils/weather'

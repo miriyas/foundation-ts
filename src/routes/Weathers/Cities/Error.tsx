@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import styles from './Cities.module.scss'
+import styles from './cities.module.scss'
 
 interface Props {
   error: Error

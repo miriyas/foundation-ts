@@ -1,4 +1,4 @@
-import styles from './Cities.module.scss'
+import styles from './cities.module.scss'
 
 import { IWeatherAPIRes } from 'types/weather.d'
 

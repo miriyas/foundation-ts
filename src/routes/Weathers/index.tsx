@@ -2,7 +2,7 @@
 import cx from 'classnames'
 import { Link, NavLink, useParams } from 'react-router-dom'
 import { ErrorBoundary } from 'react-error-boundary'
-import styles from './Weather.module.scss'
+import styles from './weather.module.scss'
 
 import Error from './Cities/Error'
 import WeatherCustom from './Cities/Custom'

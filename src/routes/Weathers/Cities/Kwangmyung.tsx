@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query'
-import styles from './Cities.module.scss'
+import styles from './cities.module.scss'
 
 import { getWeatherForecast5DaysApi } from 'services/weather'
 import { isAxiosError } from 'utils/axios'

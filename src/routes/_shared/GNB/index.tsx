@@ -35,6 +35,11 @@ const GNB = () => {
     <nav className={styles.gnb}>
       <ul>
         <li>
+          <NavLink to='corona' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
+            {`${t('front:gnb.corona')}`}
+          </NavLink>
+        </li>
+        <li>
           <NavLink to='todo' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
             {`${t('front:gnb.todo')}`}
           </NavLink>
