@@ -5,7 +5,7 @@ import styles from './routes.module.scss'
 import { useAppSelector, useEffect, useGA } from 'hooks'
 import { getTheme } from 'states/system'
 
-import Corona from './Corona'
+import Corona from './Chart'
 import TodoList from './TodoList'
 import Weather from './Weathers'
 import GNB from 'routes/_shared/GNB'

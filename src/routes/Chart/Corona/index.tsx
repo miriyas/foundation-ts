@@ -4,10 +4,10 @@ import styles from './corona.module.scss'
 import { isAxiosError } from 'utils/axios'
 import { getCoronaRawDataApi } from 'services/corona'
 
-import Chart from './Chart'
+import Chart from './CoronaChart'
 
 const Corona = () => {
-  const { data: csvData } = useQuery(
+  const { data: csvData = '', isLoading } = useQuery(
     ['getCoronaRawDataApi'],
     () =>
       getCoronaRawDataApi().then((res) => {
@@ -28,9 +28,7 @@ const Corona = () => {
 
   return (
     <div className={styles.corona}>
-      <div className={styles.centering}>
-        <Chart csvData={csvData} />
-      </div>
+      <div className={styles.centering}>{!isLoading && <Chart csvData={csvData} />}</div>
     </div>
   )
 }

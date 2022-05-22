@@ -3,7 +3,7 @@ import { ScalePropType } from 'victory-core'
 
 import { ChartDataItem } from 'types/corona'
 import { csvToArray, convertData } from './utils'
-import { COLORS } from './chartOption'
+import { COLORS } from './coronaChartOption'
 
 import styles from './corona.module.scss'
 
@@ -65,7 +65,7 @@ const Chart = ({ csvData }: Props) => {
             name='death'
             animate={{
               duration: 2000,
-              onLoad: { duration: 500 },
+              onLoad: { duration: 1500 },
             }}
             style={{
               data: { stroke: COLORS.RED },
