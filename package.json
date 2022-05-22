@@ -54,6 +54,7 @@
     "recoil": "^0.7.3-alpha.2",
     "store": "^2.0.12",
     "victory": "^36.4.0",
+    "victory-core": "^36.4.0",
     "web-vitals": "^2.1.0"
   },
   "devDependencies": {
