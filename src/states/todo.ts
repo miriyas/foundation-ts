@@ -37,10 +37,11 @@ const systemSlice = createSlice({
     setTodoList: (state: TodoState, action: PayloadAction<ITodoItem[]>) => {
       state.todoList = action.payload
     },
+    resetTodoList: () => INITIAL_STATE,
   },
 })
 
-export const { setTodoList } = systemSlice.actions
+export const { setTodoList, resetTodoList } = systemSlice.actions
 
 export default systemSlice.reducer
 
