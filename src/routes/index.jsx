@@ -5,10 +5,11 @@ import styles from './routes.module.scss'
 import { useAppSelector, useEffect, useGA } from 'hooks'
 import { getTheme } from 'states/system'
 
+import GNB from 'routes/_shared/GNB'
+import Buttons from './Buttons'
 import Corona from './Chart'
 import TodoList from './TodoList'
 import Weather from './Weathers'
-import GNB from 'routes/_shared/GNB'
 
 const App = () => {
   const theme = useAppSelector(getTheme)
@@ -30,6 +31,7 @@ const App = () => {
       <div className={styles.app}>
         <Routes>
           <Route path='/' element={<TodoList />} />
+          <Route path='buttons' element={<Buttons />} />
           <Route path='corona' element={<Corona />} />
           <Route path='todo' element={<TodoList />} />
           <Route path='weather' element={<Weather />}>

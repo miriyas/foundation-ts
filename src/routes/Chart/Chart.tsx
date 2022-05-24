@@ -1,5 +1,4 @@
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme } from 'victory'
-import styles from './corona.module.scss'
 
 import CHART_STYLE from './chartStyle'
 import CHANNEL_DATA from './channelData.json'
