@@ -4,6 +4,7 @@
 .button {
   @include flexbox.flexbox;
   border: 1px solid colors.$GRAYA;
+  transition: 200ms;
 
   + .button {
     margin-left: 14px;
