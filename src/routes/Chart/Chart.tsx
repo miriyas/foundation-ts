@@ -3,10 +3,6 @@ import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme } fro
 import CHART_STYLE from './chartStyle'
 import CHANNEL_DATA from './channelData.json'
 
-interface Props {
-  data?: string
-}
-
 const dataStructure = [
   { value: 0, category: '광고비' },
   { value: 0, category: '매출' },
@@ -55,7 +51,7 @@ const tickFormat = ['광고비', '매출', '노출 수', '클릭 수', '전환 �
 
 const { google, facebook, naver, kakao } = getFuck()
 
-const Chart = ({ data }: Props) => {
+const Chart = () => {
   return (
     <div>
       <VictoryChart theme={VictoryTheme.material} domainPadding={20}>

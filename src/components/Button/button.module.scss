@@ -1,5 +1,5 @@
-@use 'styles/constants/colors';
-@use 'styles/mixins/flexbox';
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
 
 .button {
   @include flexbox.flexbox;
