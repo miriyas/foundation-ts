@@ -23,8 +23,8 @@ const TodoList = () => {
     <div className={styles.todoList}>
       <div className={styles.centering}>
         <h1>Hi! this is your assignment.</h1>
+        <p className={styles.tasksTitle}>Today&apos;s</p>
         <ul className={styles.tasks}>
-          <p className={styles.tasksTitle}>Today&apos;s</p>
           {todoList.map((todo) => (
             <TodoItem key={`todo-${todo.id}`} todo={todo} />
           ))}

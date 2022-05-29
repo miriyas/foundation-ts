@@ -41,10 +41,12 @@ const TodoItem = ({ todo }: Props) => {
     // <li className={cx(styles.task, { [styles.done]: isDone })}>
     <li className={cx(styles.task, { [styles.done]: done })}>
       <div className={styles.checkboxWrapper}>
-        <input type='checkbox' checked={done} onChange={handleChange} />
+        <input id={`todo-item-${id}`} type='checkbox' checked={done} onChange={handleChange} />
         <CheckIcon />
       </div>
-      <p className={styles.title}>{title}</p>
+      <label htmlFor={`todo-item-${id}`} className={styles.title}>
+        {title}
+      </label>
     </li>
   )
 }

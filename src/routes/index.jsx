@@ -7,6 +7,7 @@ import { getTheme } from 'states/system'
 
 import GNB from 'routes/_shared/GNB'
 import Buttons from './Buttons'
+import Maps from './Maps'
 import Corona from './Chart'
 import TodoList from './TodoList'
 import Weather from './Weathers'
@@ -31,6 +32,7 @@ const App = () => {
       <div className={styles.app}>
         <Routes>
           <Route path='/' element={<TodoList />} />
+          <Route path='maps' element={<Maps />} />
           <Route path='buttons' element={<Buttons />} />
           <Route path='corona' element={<Corona />} />
           <Route path='todo' element={<TodoList />} />

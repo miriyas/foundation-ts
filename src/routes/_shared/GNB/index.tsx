@@ -9,6 +9,8 @@ import { getTheme, toggleTheme } from 'states/system'
 
 const storedLang = store.get('wanted.language') || 'EN'
 
+const navData = ['maps', 'buttons', 'corona', 'todo', 'weather']
+
 const GNB = () => {
   const t = useI18n()
   const { gaEvent } = useGA()
@@ -34,26 +36,15 @@ const GNB = () => {
   return (
     <nav className={styles.gnb}>
       <ul>
-        <li>
-          <NavLink to='buttons' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
-            {`${t('front:gnb.buttons')}`}
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='corona' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
-            {`${t('front:gnb.corona')}`}
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='todo' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
-            {`${t('front:gnb.todo')}`}
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='weather' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
-            {`${t('front:gnb.weather')}`}
-          </NavLink>
-        </li>
+        {navData.map((item) => {
+          return (
+            <li key={`gnb-item-${item}`}>
+              <NavLink to={item} className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
+                <p>{`${t(`front:gnb.${item}`)}`}</p>
+              </NavLink>
+            </li>
+          )
+        })}
       </ul>
       <div className={styles.rightWing}>
         <button type='button' onClick={handleThemeClick} className={styles.theme}>
