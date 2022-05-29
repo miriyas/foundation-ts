@@ -7,7 +7,7 @@ import { useState } from 'hooks'
 
 // https://react-kakao-maps-sdk.jaeseokim.dev/docs/sample/roadview/basicRoadview2
 
-const Maps = () => {
+const KakaoMaps = () => {
   const [mapTypeId, setMapTypeId] = useState<kakao.maps.MapTypeId>()
   const [roadViewLat, setRoadViewLat] = useState<number | undefined>()
   const [roadViewLon, setRoadViewLon] = useState<number | undefined>()
@@ -60,4 +60,4 @@ const Maps = () => {
   )
 }
 
-export default Maps
+export default KakaoMaps

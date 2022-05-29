@@ -9,7 +9,7 @@ import { getTheme, toggleTheme } from 'states/system'
 
 const storedLang = store.get('wanted.language') || 'EN'
 
-const navData = ['maps', 'buttons', 'corona', 'todo', 'weather']
+const navData = ['kakao', 'google', 'buttons', 'corona', 'todo', 'weather']
 
 const GNB = () => {
   const t = useI18n()

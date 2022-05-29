@@ -1,6 +1,7 @@
 {
 	"city.kwangmyung": "Kwangmyung",
-	"gnb.maps": "Maps",
+	"gnb.kakao": "Kakao Maps",
+	"gnb.google": "Google Maps",
 	"gnb.buttons": "Buttons",
 	"gnb.corona": "Corona",
 	"gnb.todo": "Todo",
