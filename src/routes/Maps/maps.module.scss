@@ -1,3 +1,18 @@
 .maps {
-  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 600px;
+
+  .mapWrapper {
+    width: 100%;
+    height: 70vh;
+  }
+
+  .roadViewWrapper {
+    width: 100%;
+    height: 20vh;
+  }
 }
